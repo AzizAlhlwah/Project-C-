@@ -13,5 +13,7 @@ namespace ProjectForTryIdeas.Models
         public int Model { get; set; }
 
         public Person person { get; set; }
+
+        public int personId { get; set; }
     }
 }

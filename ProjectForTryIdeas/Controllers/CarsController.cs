@@ -46,6 +46,8 @@ namespace ProjectForTryIdeas.Controllers
         // GET: Cars/Create
         public IActionResult Create()
         {
+            var people = _context.Person.ToList();
+            ViewBag.peopleList = new SelectList(people, "Id", "Name");
             return View();
         }
 
@@ -54,7 +56,7 @@ namespace ProjectForTryIdeas.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Brean,Name,Model")] Car car)
+        public async Task<IActionResult> Create([Bind("Id,Brean,Name,Model,personId")] Car car)
         {
             if (ModelState.IsValid)
             {
@@ -68,6 +70,11 @@ namespace ProjectForTryIdeas.Controllers
         // GET: Cars/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+
+
+            var people = _context.Person.ToList();
+            ViewBag.peopleList = new SelectList(people, "Id", "Name");
+
             if (id == null)
             {
                 return NotFound();
@@ -86,7 +93,7 @@ namespace ProjectForTryIdeas.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Brean,Name,Model")] Car car)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Brean,Name,Model,personId")] Car car)
         {
             if (id != car.Id)
             {
